@@ -2,15 +2,15 @@ package com.example.city_break_manager;
 
 import com.example.city_break_manager.domain.City;
 import com.example.city_break_manager.repository.CityRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import tools.jackson.databind.ObjectMapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -43,7 +43,8 @@ class UnitTests {
         ObjectMapper mapper = new ObjectMapper();
         City createdCity = mapper.readValue(json, City.class);
 
-        City fromRepo = cityRepository.findById(createdCity.getId());
+        City fromRepo = cityRepository.findById(createdCity.getId())
+                .orElseThrow(() -> new RuntimeException("City not found with id " + createdCity.getId()));
 
         assertNotNull(fromRepo);
         assertEquals("Paris", fromRepo.getName());

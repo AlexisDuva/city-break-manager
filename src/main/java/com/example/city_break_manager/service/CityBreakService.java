@@ -27,39 +27,41 @@ public class CityBreakService {
         return cityRepository.save(city);
     }
 
-    public City updateCity(City city){
-        return cityRepository.findById(city.getId());
-    }
+//    public City updateCity(City city){
+//        return cityRepository.findById(city.getId());
+//    }
 
-    public void deleteCity(int id){
-        cityRepository.delete(id);
-    }
+    public void deleteCity(City city){cityRepository.delete(city);}
 
     public City findCityById(int id){
-        return cityRepository.findById(id);
+        return cityRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("City not found with id " + id));
     }
 
     public Iterable<City> findAllCities(){
         return cityRepository.findAll();
     }
 
-    public Trip saveTrip(Integer cityId, Date StartDate, Date endDate,int rating, String personalNotes){
-        City city = cityRepository.findById(cityId);
+    public Trip saveTrip(Integer cityId, Date startDate, Date endDate, int rating, String personalNotes){
+        City city = cityRepository.findById(cityId)
+                .orElseThrow(() -> new RuntimeException("City not found with id " + cityId));
+
         int id = atomicInteger.incrementAndGet();
-        Trip trip = new Trip(id, city, StartDate,  endDate, rating,  personalNotes);
+        Trip trip = new Trip(id, city, startDate, endDate, rating, personalNotes);
         return tripRepository.save(trip);
     }
 
-    public Trip updateTrip(Trip trip){
-        return tripRepository.findById(trip.getId());
-    }
+//    public Trip updateTrip(Trip trip){
+//        return tripRepository.findById(trip.getId());
+//    }
 
-    public void deleteTrip(int id){
-        tripRepository.delete(id);
+    public void deleteTrip(Trip trip){
+        tripRepository.delete(trip);
     }
 
     public Trip findTripById(int id){
-        return tripRepository.findById(id);
+        return tripRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Trip not found with id " + id));
     }
 
     public Iterable<Trip> findAllTrips(){

@@ -35,14 +35,14 @@ public class CityBreakController {
         return cityBreakService.findAllCities();
     }
 
-    @PutMapping("/cities")
-    public City updateCity(@RequestBody City city) {
-        return cityBreakService.updateCity(city);
-    }
+//    @PutMapping("/cities")
+//    public City updateCity(@RequestBody City city) {
+//        return cityBreakService.updateCity(city);
+//    }
 
     @DeleteMapping("/cities/{id}")
-    public void deleteCity(@PathVariable int id) {
-        cityBreakService.deleteCity(id);
+    public void deleteCity(@RequestBody City city) {
+        cityBreakService.deleteCity(city);
     }
 
 
@@ -63,14 +63,14 @@ public class CityBreakController {
         return cityBreakService.findAllTrips();
     }
 
-    @PutMapping("/trips")
-    public Trip updateTrip(@RequestBody Trip trip) {
-        return cityBreakService.updateTrip(trip);
-    }
+//    @PutMapping("/trips")
+//    public Trip updateTrip(@RequestBody Trip trip) {
+//        return cityBreakService.updateTrip(trip);
+//    }
 
     @DeleteMapping("/trips/{id}")
-    public void deleteTrip(@PathVariable int id) {
-        cityBreakService.deleteTrip(id);
+    public void deleteTrip(@RequestBody Trip trip) {
+        cityBreakService.deleteTrip(trip);
     }
 
 }

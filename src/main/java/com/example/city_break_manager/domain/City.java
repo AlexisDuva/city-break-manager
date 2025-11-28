@@ -1,10 +1,14 @@
 package com.example.city_break_manager.domain;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Getter;
 
 @Getter
+@Entity
 public class City {
+    @Id
     private final int id;
     private final String name;
     private final String country;

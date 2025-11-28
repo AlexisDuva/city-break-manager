@@ -5,10 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {
-        "com.example.city_break_manager",
-        "org.springframework.boot.resttestclient"
-})
+//@ComponentScan(basePackages = {
+//        "com.example.city_break_manager",
+//        "org.springframework.boot.resttestclient",
+//        "org.h2"
+//})
 public class CityBreakManagerApplication {
 
 	public static void main(String[] args) {
